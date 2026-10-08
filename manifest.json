@@ -1,0 +1,18 @@
+{
+  "name": "TET Practice - Raay Education",
+  "short_name": "TET Practice",
+  "description": "AP TET Paper 1A/2A practice quiz in Telugu and English by Raay Education",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1d2a4d",
+  "theme_color": "#2f7d4f",
+  "lang": "te",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
