@@ -1,9 +1,6 @@
-const CACHE='tet-v1';
-const FILES=['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png'];
-self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)));self.skipWaiting();});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))));self.clients.claim();});
-// Network first: new index.html uploads show immediately; offline falls back to cache
-self.addEventListener('fetch',e=>{
-  if(e.request.method!=='GET')return;
-  e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(x=>x.put(e.request,c));return r;}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./index.html'))));
-});
+const C='tet2a-v4';const F=['./','./index.html','./manifest.json','./icons/icon-192.png','./icons/icon-512.png'];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(F.map(u=>new Request(u,{cache:'reload'})))));self.skipWaiting();});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim()));});
+self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET')return;
+ if(r.mode==='navigate'){e.respondWith(fetch(r,{cache:'no-store'}).then(res=>{if(res.ok){const cp=res.clone();caches.open(C).then(c=>c.put('./index.html',cp));return res;}return caches.match('./index.html').then(x=>x||res);}).catch(()=>caches.match('./index.html').then(x=>x||caches.match('./'))));return;}
+ e.respondWith(caches.match(r).then(x=>x||fetch(r).then(res=>{if(res.ok&&r.url.startsWith(self.location.origin)){const cp=res.clone();caches.open(C).then(c=>c.put(r,cp));}return res;}).catch(()=>new Response('',{status:504}))));});

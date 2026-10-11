@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TET 2A సన్నద్ధత – చదువు, క్విజ్ & సమాధానాలు – రాయ్ ఎడ్యుకేషన్</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700&family=Ramabhadra&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700&family=Ramabhadra&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
 :root{
   --ink:#1B2559;--ink2:#2C3A7A;--paper:#F5F6FB;--card:#FFFFFF;--line:#DDE1EE;
@@ -152,8 +152,9 @@ mark{background:#FFE58A;padding:0 1px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2f7d4f">
-<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#1B2559">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
 <header>
@@ -592,8 +593,5 @@ function mkResult(r){
 }
 renderModes();renderChips();home();
 </script>
-<script>
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
-</script>
-</body>
+<script>if("serviceWorker" in navigator&&location.protocol.startsWith("http")){navigator.serviceWorker.register("sw.js").catch(()=>{});}</script></body>
 </html>
